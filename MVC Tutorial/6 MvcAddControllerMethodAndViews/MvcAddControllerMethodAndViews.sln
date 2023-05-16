@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcAddControllerMethodAndViews", "MvcAddControllerMethodAndViews\MvcAddControllerMethodAndViews.csproj", "{7072D1DD-CCBB-48D2-8F78-29190904F66F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7072D1DD-CCBB-48D2-8F78-29190904F66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7072D1DD-CCBB-48D2-8F78-29190904F66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7072D1DD-CCBB-48D2-8F78-29190904F66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7072D1DD-CCBB-48D2-8F78-29190904F66F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B64F83E7-3539-4239-B9F3-1AF7D0D4C78C}
+	EndGlobalSection
+EndGlobal

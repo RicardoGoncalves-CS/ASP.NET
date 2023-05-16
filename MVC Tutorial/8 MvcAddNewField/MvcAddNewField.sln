@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcAddNewField", "MvcAddNewField\MvcAddNewField.csproj", "{0B6A9712-1468-4A7B-89E4-CB7445F4FDBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B6A9712-1468-4A7B-89E4-CB7445F4FDBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6A9712-1468-4A7B-89E4-CB7445F4FDBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6A9712-1468-4A7B-89E4-CB7445F4FDBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6A9712-1468-4A7B-89E4-CB7445F4FDBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A18A285-A4AA-4E18-8434-BCFB7129B3B7}
+	EndGlobalSection
+EndGlobal

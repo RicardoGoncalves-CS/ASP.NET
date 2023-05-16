@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcAddView", "MvcAddView\MvcAddView.csproj", "{2951C09F-228F-49EE-96CE-4B6D7EA754A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2951C09F-228F-49EE-96CE-4B6D7EA754A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2951C09F-228F-49EE-96CE-4B6D7EA754A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2951C09F-228F-49EE-96CE-4B6D7EA754A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2951C09F-228F-49EE-96CE-4B6D7EA754A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0B0D0A1-0376-4B1C-A123-8E51D39FDC6A}
+	EndGlobalSection
+EndGlobal
