@@ -2,22 +2,32 @@
 
 @{
     ViewData["Title"] = "Index";
+    string searchString = ViewData["SearchString"] as string;
 }
 
-<h1>My Notes</h1>
+<h1 class="notes-title">My Notes</h1>
 
-<div>
-    <!--<a asp-action="Create">Create New</a>-->
-    <form asp-controller="Notes" asp-action="Create" asp-method="get" style="display: inline;">
-        <input type="submit" value="New Note" />
-    </form>
-    <form asp-controller="Notes" asp-action="Load" asp-method="post" style="display: inline;">
-        <input type="submit" value="Load Data" />
-    </form>
-    <form asp-controller="Notes" asp-action="Save" asp-method="post" style="display: inline;">
-        <input type="submit" value="Save Data" />
-    </form>
+<div class="notes-options">
+    <div>
+        <form asp-controller="Notes" asp-action="Create" asp-method="get" class="notes-options-from">
+            <input type="submit" value="New Note" />
+        </form>
+        <form asp-controller="Notes" asp-action="Load" asp-method="post" class="notes-options-from">
+            <input type="submit" value="Load From Disk" />
+        </form>
+        <form asp-controller="Notes" asp-action="Save" asp-method="post" class="notes-options-from">
+            <input type="submit" value="Save To Disk" />
+        </form>
+    </div>
+    <div>
+        <form asp-controller="Notes" asp-action="Index" method="get" class="notes-options-from">
+            <input type="text" name="searchString" value="@ViewBag.SearchString" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
 </div>
+
+
 <table class="table">
     <thead>
         <tr>

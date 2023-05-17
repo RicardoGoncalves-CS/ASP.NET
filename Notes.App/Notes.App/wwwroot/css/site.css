@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.notes-title {
+    margin-bottom: 20px;
+}
+
+.notes-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.notes-options-from {
+    display: inline-block;
+}

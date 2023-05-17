@@ -42,7 +42,7 @@ namespace LocalFilesManager
 
                 foreach (string filePath in textFiles)
                 {
-                    string fileName = Path.GetFileName(filePath);
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
                     string fileContent = Read(filePath);
                     DateTime fileCreationDate = File.GetCreationTime(filePath);
 
@@ -89,7 +89,7 @@ namespace LocalFilesManager
                 }
                 else if (existingFile.FileName != note.FileName && existingFile.Content != note.Content)
                 {
-                    string currentFilePath = Path.Combine(directoryPath, existingFile.FileName);
+                    string currentFilePath = Path.Combine(directoryPath, existingFile.FileName + ".txt");
                     string newFilePath = Path.Combine(directoryPath, note.FileName + ".txt");
 
                     if (File.Exists(currentFilePath))
@@ -103,7 +103,7 @@ namespace LocalFilesManager
                 {
                     if (existingFile.FileName != note.FileName)
                     {
-                        string currentFilePath = Path.Combine(directoryPath, existingFile.FileName);
+                        string currentFilePath = Path.Combine(directoryPath, existingFile.FileName + ".txt");
                         string newFilePath = Path.Combine(directoryPath, note.FileName + ".txt");
 
                         if (File.Exists(currentFilePath))
@@ -113,7 +113,7 @@ namespace LocalFilesManager
                     }
                     else
                     {
-                        string filePath = Path.Combine(directoryPath, existingFile.FileName);
+                        string filePath = Path.Combine(directoryPath, existingFile.FileName + ".txt");
                         File.WriteAllText(filePath, note.Content);
                     }
                 }

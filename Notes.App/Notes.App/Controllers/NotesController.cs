@@ -86,32 +86,38 @@ namespace Notes.App.Controllers
         }
         */
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, string searchString)
         {
             // Set the default sort order if it's not provided
             if (string.IsNullOrEmpty(sortOrder))
             {
-                sortOrder = "DateCreated";
+                sortOrder = "DateCreatedDesc";
             }
 
             ViewData["CurrentSort"] = sortOrder;
-            List<Note> notes = _context.Note.ToList();
+
+            var notes = _context.Note.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                notes = notes.Where(n => n.Title.Contains(searchString) || n.Content.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
                 case "DateCreatedDesc":
-                    notes = notes.OrderByDescending(n => n.CreationDate).ToList();
+                    notes = notes.OrderByDescending(n => n.CreationDate);
                     break;
                 case "DateCreated":
-                    notes = notes.OrderBy(n => n.CreationDate).ToList();
+                    notes = notes.OrderBy(n => n.CreationDate);
                     break;
                 default:
                     // Default to ascending order
-                    notes = notes.OrderBy(n => n.CreationDate).ToList();
+                    notes = notes.OrderBy(n => n.CreationDate);
                     break;
             }
 
-            return View(notes);
+            return View(notes.ToList());
         }
 
         // GET: Notes/Details/5

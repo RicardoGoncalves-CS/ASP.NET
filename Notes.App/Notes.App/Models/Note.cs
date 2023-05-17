@@ -10,9 +10,12 @@ namespace Notes.App.Models
         }
 
         public Guid Id { get; set; }
+
+        [Required]
         public string Title { get; set; }
 
-        [DataType(DataType.MultilineText)]
+
+        [Required]
         public string Content { get; set; }
         public DateTime CreationDate { get; set; }
     }
