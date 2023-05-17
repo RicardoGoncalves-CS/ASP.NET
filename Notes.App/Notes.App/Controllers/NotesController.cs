@@ -88,15 +88,25 @@ namespace Notes.App.Controllers
 
         public IActionResult Index(string sortOrder)
         {
-            ViewData["DateCreatedSortParam"] = string.IsNullOrEmpty(sortOrder) ? "date_created_desc" : "";
+            // Set the default sort order if it's not provided
+            if (string.IsNullOrEmpty(sortOrder))
+            {
+                sortOrder = "DateCreated";
+            }
+
+            ViewData["CurrentSort"] = sortOrder;
             List<Note> notes = _context.Note.ToList();
 
             switch (sortOrder)
             {
-                case "date_created_desc":
+                case "DateCreatedDesc":
                     notes = notes.OrderByDescending(n => n.CreationDate).ToList();
                     break;
+                case "DateCreated":
+                    notes = notes.OrderBy(n => n.CreationDate).ToList();
+                    break;
                 default:
+                    // Default to ascending order
                     notes = notes.OrderBy(n => n.CreationDate).ToList();
                     break;
             }

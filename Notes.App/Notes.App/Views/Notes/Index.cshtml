@@ -4,21 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>My Notes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<form asp-controller="Notes" asp-action="Load" asp-method="post">
-    <input type="submit" value="Load Data" />
-</form>
-<form asp-controller="Notes" asp-action="Save" asp-method="post">
-    <input type="submit" value="Save Data" />
-</form>
-<a asp-action="Index" asp-route-sortOrder="DateCreated">Order by Date Created</a>
-
-
+<div>
+    <!--<a asp-action="Create">Create New</a>-->
+    <form asp-controller="Notes" asp-action="Create" asp-method="get" style="display: inline;">
+        <input type="submit" value="New Note" />
+    </form>
+    <form asp-controller="Notes" asp-action="Load" asp-method="post" style="display: inline;">
+        <input type="submit" value="Load Data" />
+    </form>
+    <form asp-controller="Notes" asp-action="Save" asp-method="post" style="display: inline;">
+        <input type="submit" value="Save Data" />
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -30,6 +29,20 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreationDate)
+                <a asp-action="Index" asp-route-sortOrder="@(ViewData["CurrentSort"].ToString() == "DateCreated" ? "DateCreatedDesc" : "DateCreated")">
+                    @if (ViewData["CurrentSort"].ToString() == "DateCreated")
+                    {
+                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    }
+                    else if (ViewData["CurrentSort"].ToString() == "DateCreatedDesc")
+                    {
+                        <i class="fa-solid fa-arrow-up-wide-short"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-sort"></i>
+                    }
+                </a>
             </th>
             <th></th>
         </tr>
