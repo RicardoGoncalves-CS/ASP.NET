@@ -17,6 +17,9 @@ namespace Notes.App.Models
 
         [Required]
         public string Content { get; set; }
+
         public DateTime CreationDate { get; set; }
+
+        public bool IsSelected { get; set; }
     }
 }

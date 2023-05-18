@@ -3,21 +3,22 @@
 @{
     ViewData["Title"] = "Index";
     string searchString = ViewData["SearchString"] as string;
+    string selectedDirectory = ViewData["SelectedDirectory"] as string;
 }
 
 <h1 class="notes-title">My Notes</h1>
 
 <div class="notes-options">
     <div>
-        <form asp-controller="Notes" asp-action="Create" asp-method="get" class="notes-options-from">
-            <input type="submit" value="New Note" />
-        </form>
+        <p class="notes-options-from">
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+        </p>
         <form asp-controller="Notes" asp-action="Load" asp-method="post" class="notes-options-from">
-            <input type="submit" value="Load From Disk" />
+            <button type="submit" class="btn btn-primary">Load from disk</button>
         </form>
-        <form asp-controller="Notes" asp-action="Save" asp-method="post" class="notes-options-from">
-            <input type="submit" value="Save To Disk" />
-        </form>
+        <p class="notes-options-from">
+            <a asp-action="Save" class="btn btn-primary">Save to disk</a>
+        </p>
     </div>
     <div>
         <form asp-controller="Notes" asp-action="Index" method="get" class="notes-options-from">
@@ -27,54 +28,62 @@
     </div>
 </div>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-                <a asp-action="Index" asp-route-sortOrder="@(ViewData["CurrentSort"].ToString() == "DateCreated" ? "DateCreatedDesc" : "DateCreated")">
-                    @if (ViewData["CurrentSort"].ToString() == "DateCreated")
-                    {
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                    }
-                    else if (ViewData["CurrentSort"].ToString() == "DateCreatedDesc")
-                    {
-                        <i class="fa-solid fa-arrow-up-wide-short"></i>
-                    }
-                    else
-                    {
-                        <i class="fas fa-sort"></i>
-                    }
-                </a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<form asp-controller="Notes" asp-action="DeleteSelected" method="post" onsubmit="return confirm('Are you sure you want to delete the selected items?');">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <i class="fa-solid fa-square-check"></i>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                    <a asp-action="Index" asp-route-sortOrder="@(ViewData["CurrentSort"].ToString() == "DateCreated" ? "DateCreatedDesc" : "DateCreated")">
+                        @if (ViewData["CurrentSort"].ToString() == "DateCreated")
+                        {
+                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                        }
+                        else if (ViewData["CurrentSort"].ToString() == "DateCreatedDesc")
+                        {
+                            <i class="fa-solid fa-arrow-up-wide-short"></i>
+                        }
+                        else
+                        {
+                            <i class="fas fa-sort"></i>
+                        }
+                    </a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    <input type="checkbox" asp-for="@item.IsSelected" name="selectedIds" value="@item.Id" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Delete Selected" class="btn btn-danger" />
+</form>

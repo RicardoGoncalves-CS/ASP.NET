@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Select Directory";
+}
+
+<h1>Select Directory</h1>
+
+<form asp-action="Save" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="directoryPath">Directory Path:</label>
+        <input type="text" id="directoryPath" name="directoryPath" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <input type="file" id="directoryPicker" style="display: none;" webkitdirectory multiple />
+        <button type="button" id="selectDirectoryButton" class="btn btn-primary">Select Directory</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<script>
+    document.getElementById('selectDirectoryButton').addEventListener('click', function () {
+        document.getElementById('directoryPicker').click();
+    });
+
+    document.getElementById('directoryPicker').addEventListener('change', function () {
+        var input = document.getElementById('directoryPath');
+        input.value = this.files[0].webkitRelativePath.split('/')[0];
+    });
+</script>

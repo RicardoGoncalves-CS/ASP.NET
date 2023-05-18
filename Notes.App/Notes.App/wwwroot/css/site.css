@@ -34,3 +34,14 @@ body {
 .notes-options-from {
     display: inline-block;
 }
+
+.details-title {
+    font-size: 16px;
+    margin-bottom: 26px;
+}
+
+.details-content {
+    white-space: pre-wrap;
+    font-size: 16px;
+}
+

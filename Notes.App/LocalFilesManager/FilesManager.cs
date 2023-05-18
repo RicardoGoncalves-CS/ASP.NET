@@ -75,6 +75,21 @@ namespace LocalFilesManager
         {
             var currentFilesInDirectory = ReadFilesFromDirectory(directoryPath);
 
+            // Delete files not found in the notes list
+            foreach (var file in currentFilesInDirectory)
+            {
+                if (!notes.Any(n => n.CreationDate == file.CreationDate))
+                {
+                    string filePath = Path.Combine(directoryPath, file.FileName + ".txt");
+                    Console.WriteLine(filePath);
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+            }
+
+            // Saving changes on the notes
             foreach (var note in notes)
             {
                 var existingFile = currentFilesInDirectory.FirstOrDefault(f => f.CreationDate == note.CreationDate);

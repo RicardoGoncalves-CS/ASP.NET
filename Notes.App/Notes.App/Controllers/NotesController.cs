@@ -76,16 +76,6 @@ namespace Notes.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Notes
-        /*
-        public async Task<IActionResult> Index()
-        {
-            return _context.Note != null ? 
-                View(await _context.Note.ToListAsync()) :
-                Problem("Entity set 'NotesAppContext.Note'  is null.");
-        }
-        */
-
         public IActionResult Index(string sortOrder, string searchString)
         {
             // Set the default sort order if it's not provided
@@ -115,6 +105,11 @@ namespace Notes.App.Controllers
                     // Default to ascending order
                     notes = notes.OrderBy(n => n.CreationDate);
                     break;
+            }
+
+            foreach (var note in notes)
+            {
+                note.IsSelected = false;
             }
 
             return View(notes.ToList());
@@ -261,6 +256,25 @@ namespace Notes.App.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSelected(Guid[] selectedIds)
+        {
+            if (selectedIds != null && selectedIds.Length > 0)
+            {
+                var selectedNotes = _context.Note.Where(n => selectedIds.Contains(n.Id)).ToList();
+
+                _context.Note.RemoveRange(selectedNotes);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult SelectDirectory()
+        {
+            return View();
         }
 
         private bool NoteExists(Guid id)
