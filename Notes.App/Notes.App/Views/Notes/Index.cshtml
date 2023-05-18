@@ -13,23 +13,17 @@
         <p class="notes-options-from">
             <a asp-action="Create" class="btn btn-primary">Create New</a>
         </p>
-        <form asp-controller="Notes" asp-action="Load" asp-method="post" class="notes-options-from">
-            <button type="submit" class="btn btn-primary">Load from disk</button>
-        </form>
-        <p class="notes-options-from">
-            <a asp-action="Save" class="btn btn-primary">Save to disk</a>
-        </p>
     </div>
     <div>
         <form asp-controller="Notes" asp-action="Index" method="get" class="notes-options-from">
-            <input type="text" name="searchString" value="@ViewBag.SearchString" />
-            <input type="submit" value="Search" />
+            <input type="text" name="searchString" value="@ViewBag.SearchString" class="search-bar secondary-button" />
+            <input type="submit" value="Filter" class="btn btn-primary" />
         </form>
     </div>
 </div>
 
 <form asp-controller="Notes" asp-action="DeleteSelected" method="post" onsubmit="return confirm('Are you sure you want to delete the selected items?');">
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>
@@ -62,28 +56,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    <input type="checkbox" asp-for="@item.IsSelected" name="selectedIds" value="@item.Id" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreationDate)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" asp-for="@item.IsSelected" name="selectedIds" value="@item.Id" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary secondary-button">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary secondary-button">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary secondary-button">Delete</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
-    <input type="submit" value="Delete Selected" class="btn btn-danger" />
+    <input type="submit" value="Delete Selected" class="btn btn-danger secondary-button" />
 </form>

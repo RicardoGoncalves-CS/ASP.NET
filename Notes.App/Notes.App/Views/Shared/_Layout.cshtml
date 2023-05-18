@@ -18,8 +18,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav flex-grow-1 align-items-center">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -28,6 +28,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Notes" asp-action="Index">Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <form asp-controller="Notes" asp-action="Load" asp-method="post">
+                                <button type="submit" class="nav-link text-dark nav-button">Load Data</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Save" class="nav-link text-dark">Save data</a>
                         </li>
                     </ul>
                 </div>
